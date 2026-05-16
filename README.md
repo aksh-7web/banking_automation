@@ -1,3 +1,0 @@
-﻿# Banking Automation Testing Framework
-
-WIPRO Capstone project submission by Team Debugger
