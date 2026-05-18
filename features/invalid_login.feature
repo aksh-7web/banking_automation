@@ -1,13 +1,15 @@
-Feature:  Login
+Feature: Demoblaze Invalid Login Authentication
 
-    Scenario: Login works with the right details
-        Given I open the ParaBank login page
-        When I type in my correct username and password
-        And I press the login button
-        Then I should land on my Accounts Overview page
+  Background:
+    Given the user is on the Demoblaze website homepage
 
-    Scenario: Login fails with the wrong details
-        Given I open the ParaBank login page
-        When I type in an incorrect username or password
-        And I press the login button
-        Then I should see a message saying the login could not be verified
+  Scenario Outline: Verify error messages for invalid login attempts
+    When the user clicks on "Log in"
+    And the user enters username "<username>" and password "<password>"
+    And the user clicks the "Log in" button in the modal
+    Then a browser alert pop-up should appear with the message "<error_message>"
+
+    Examples:
+      | username          | password       | error_message        |
+      | non_existent_user | wrong_pass123  | User does not exist. |
+      | admin             | incorret_pass  | Wrong password.      |
