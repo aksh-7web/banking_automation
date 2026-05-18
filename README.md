@@ -1,1 +1,1 @@
-﻿# Banking Automation Testing Framework
+﻿# Ecommerce Automation Testing
