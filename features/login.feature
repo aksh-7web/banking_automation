@@ -1,13 +1,6 @@
-Feature:  Login
-
-    Scenario: Login works with the right details
-        Given I open the ParaBank login page
-        When I type in my correct username and password
-        And I press the login button
-        Then I should land on my Accounts Overview page
-
-    Scenario: Login fails with the wrong details
-        Given I open the ParaBank login page
-        When I type in an incorrect username or password
-        And I press the login button
-        Then I should see a message saying the login could not be verified
+Feature: User Login
+  Scenario: Successful login
+    Given the user is on the Demoblaze home page
+    When the user clicks on the login link
+    And enters username "alok087" and password "tintin"
+    Then the welcome message should display "Welcome validUser"
