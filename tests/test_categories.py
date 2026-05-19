@@ -1,0 +1,51 @@
+from pytest_bdd import scenarios, given, when, then
+from pages.home_page import HomePage
+
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+
+scenarios("../features/categories.feature")
+
+
+@given("user opens DemoBlaze website",target_fixture="home_page")
+def open_website(browser):
+    browser.get("https://www.demoblaze.com")
+    return HomePage(browser)
+
+
+@when("user clicks Phones category")
+def click_phones(home_page):
+    home_page.select_category("Phones")
+
+
+@then("phones category products should display")
+def verify_phones(browser):
+    
+    WebDriverWait(browser,10).until(EC.visibility_of_element_located((By.XPATH,"//a[contains(text(),'Samsung galaxy s6')]")))
+    assert True
+
+@when("user clicks Laptops category")
+def click_laptops(home_page):
+    home_page.select_category("Laptops")
+
+
+@then("laptops category products should display")
+def verify_laptops(browser):
+
+    WebDriverWait(browser,10).until(EC.visibility_of_element_located((By.XPATH,"//a[contains(text(),'Sony vaio i5')]")))
+    assert True
+
+
+@when("user clicks Monitors category")
+def click_monitors(home_page):
+
+    home_page.select_category("Monitors")
+
+
+@then("monitors category products should display")
+def verify_monitors(browser):
+
+    WebDriverWait(browser,10).until(EC.visibility_of_element_located((By.XPATH,"//a[contains(text(),'Apple monitor')]")))
+    assert True

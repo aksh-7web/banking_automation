@@ -9,6 +9,5 @@ from pages.cart_page import CartPage
 
 @given('the user launches the DemoBlaze website')
 def step_launch_site(context):
-    context.driver = webdriver.Chrome()
     context.driver.get("https://www.demoblaze.com/")
     context.home_page = HomePage(context.driver)
