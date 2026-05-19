@@ -1,15 +1,29 @@
 from selenium.webdriver.common.by import By
-import time
 
-class ProductPage:
-    def __init__(self, driver):
-        self.driver = driver
+from pages.base_page import BasePage
 
-    add_to_cart_link = (By.LINK_TEXT, "Add to cart")
 
-    def add_product_to_cart(self):
-        self.driver.find_element(*self.add_to_cart_link).click()
-        time.sleep(2)
+class ProductPage(BasePage):
 
-        alert = self.driver.switch_to.alert
-        alert.accept()
+    CART = (
+        By.LINK_TEXT,
+        "Add to cart"
+    )
+
+    def select_product(
+        self,
+        product
+    ):
+
+        self.click(
+            (
+                By.LINK_TEXT,
+                product
+            )
+        )
+
+    def add_cart(self):
+
+        self.click(
+            self.CART
+        )
