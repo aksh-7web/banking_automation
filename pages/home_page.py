@@ -14,9 +14,9 @@ class HomePage(BasePage):
 
     def select_category(self, category_name):
 
-        locator = (
-            By.LINK_TEXT,
-            category_name
-        )
+        locator = (By.LINK_TEXT,category_name)
+    
+    def select_product(self, product_name):
 
+        locator = (By.LINK_TEXT,product_name)
         self.click_element(locator)
