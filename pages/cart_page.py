@@ -20,3 +20,12 @@ class CartPage:
     def remove_product(self):
         self.driver.find_element(By.LINK_TEXT, "Delete").click()
         time.sleep(2)
+    
+    def remove_product(self, product_name):
+        delete_button_xpath = f"//td[text()='{product_name}']/following-sibling::td/a[text()='Delete']"
+        self.driver.find_element(By.XPATH, delete_button_xpath).click()
+        time.sleep(2)
+    
+    def is_cart_empty(self):
+        products = self.driver.find_elements(By.XPATH, "//tbody[@id='tbodyid']/tr")
+        return len(products) == 0
