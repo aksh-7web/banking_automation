@@ -10,9 +10,9 @@ scenarios("../features/categories.feature")
 
 
 @given("user opens DemoBlaze website",target_fixture="home_page")
-def open_website(browser):
-    browser.get("https://www.demoblaze.com")
-    return HomePage(browser)
+def open_website(driver):
+    driver.get("https://www.demoblaze.com")
+    return HomePage(driver)
 
 
 @when("user clicks Phones category")
@@ -21,9 +21,9 @@ def click_phones(home_page):
 
 
 @then("phones category products should display")
-def verify_phones(browser):
+def verify_phones(driver):
     
-    WebDriverWait(browser,10).until(EC.visibility_of_element_located((By.XPATH,"//a[contains(text(),'Samsung galaxy s6')]")))
+    WebDriverWait(driver,10).until(EC.visibility_of_element_located((By.XPATH,"//a[contains(text(),'Samsung galaxy s6')]")))
     assert True
 
 @when("user clicks Laptops category")
@@ -32,9 +32,9 @@ def click_laptops(home_page):
 
 
 @then("laptops category products should display")
-def verify_laptops(browser):
+def verify_laptops(driver):
 
-    WebDriverWait(browser,10).until(EC.visibility_of_element_located((By.XPATH,"//a[contains(text(),'Sony vaio i5')]")))
+    WebDriverWait(driver,10).until(EC.visibility_of_element_located((By.XPATH,"//a[contains(text(),'Sony vaio i5')]")))
     assert True
 
 
@@ -45,7 +45,7 @@ def click_monitors(home_page):
 
 
 @then("monitors category products should display")
-def verify_monitors(browser):
+def verify_monitors(driver):
 
-    WebDriverWait(browser,10).until(EC.visibility_of_element_located((By.XPATH,"//a[contains(text(),'Apple monitor')]")))
+    WebDriverWait(driver,10).until(EC.visibility_of_element_located((By.XPATH,"//a[contains(text(),'Apple monitor')]")))
     assert True
