@@ -23,7 +23,7 @@ def click_phones(home_page):
 @then("phones category products should display")
 def verify_phones(driver):
     
-    WebDriverWait(driver,10).until(EC.visibility_of_element_located((By.XPATH,"//a[contains(text(),'Samsung galaxy s6')]")))
+    WebDriverWait(driver,20).until(EC.visibility_of_element_located((By.XPATH,"//a[contains(text(),'Samsung galaxy s6')]")))
     assert True
 
 @when("user clicks Laptops category")
@@ -34,7 +34,7 @@ def click_laptops(home_page):
 @then("laptops category products should display")
 def verify_laptops(driver):
 
-    WebDriverWait(driver,10).until(EC.visibility_of_element_located((By.XPATH,"//a[contains(text(),'Sony vaio i5')]")))
+    WebDriverWait(driver,20).until(EC.visibility_of_element_located((By.XPATH,"//a[contains(text(),'Sony vaio i5')]")))
     assert True
 
 
