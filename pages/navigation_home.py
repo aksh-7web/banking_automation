@@ -1,8 +1,8 @@
+import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from pages.base_page import BasePage
-import time
 
 class NavigationPage(BasePage):
     
@@ -25,7 +25,7 @@ class NavigationPage(BasePage):
     def click_nav_link(self, link_name):
         link = self.wait.until(EC.element_to_be_clickable((By.PARTIAL_LINK_TEXT, link_name)))
         link.click()
-        time.sleep(1) 
+        time.sleep(1)
 
     def click_category_menu(self, category_name):
         category = self.wait.until(EC.element_to_be_clickable((By.LINK_TEXT, category_name)))
@@ -33,8 +33,9 @@ class NavigationPage(BasePage):
         time.sleep(1)
 
     def verify_product_is_visible(self, product_name):
-        grid = self.wait.until(EC.visibility_of_element_located(self.product_grid))
-        return product_name in grid.text
+        grid_element = self.wait.until(EC.visibility_of_element_located(self.product_grid))
+        grid_text = grid_element.text
+        assert product_name in grid_text, f"Product '{product_name}' was not found on the display grid."
 
     def get_modal_title(self):
         return self.wait.until(EC.visibility_of_element_located(self.active_modal_title)).text
@@ -42,7 +43,7 @@ class NavigationPage(BasePage):
     def close_modal(self):
         close_btn = self.wait.until(EC.element_to_be_clickable(self.active_modal_close_btn))
         close_btn.click()
-        time.sleep(1) 
+        time.sleep(1)
 
     def get_current_url(self):
         return self.driver.current_url
