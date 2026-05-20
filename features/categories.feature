@@ -1,21 +1,21 @@
-Feature: Product Categories Functionality
+Feature: Product Categories
 
-  Scenario: Verify Phones category products
+  Scenario: Verify Phones category
 
     Given user opens DemoBlaze website
     When user clicks Phones category
-    Then phone products should display successfully
+    Then phones category products should display
 
 
-  Scenario: Verify Laptops category products
+  Scenario: Verify Laptops category
 
     Given user opens DemoBlaze website
     When user clicks Laptops category
-    Then laptop products should display successfully
+    Then laptops category products should display
 
 
-  Scenario: Verify Monitors category products
+  Scenario: Verify Monitors category
 
     Given user opens DemoBlaze website
     When user clicks Monitors category
-    Then monitor products should display successfully
+    Then monitors category products should display
