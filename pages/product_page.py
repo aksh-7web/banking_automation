@@ -1,15 +1,38 @@
 from selenium.webdriver.common.by import By
-import time
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from pages.base_page import BasePage
 
-class ProductPage:
-    def __init__(self, driver):
-        self.driver = driver
 
-    add_to_cart_link = (By.LINK_TEXT, "Add to cart")
+class ProductPage(BasePage):
+    PRODUCT = (By.LINK_TEXT,"Samsung galaxy s6")
+
+    PRODUCT_TITLE = (By.CLASS_NAME,"name")
+
+    PRODUCT_PRICE = (By.CLASS_NAME,"price-container")
+
+    ADD_TO_CART = (By.LINK_TEXT,"Add to cart")
+
+    def select_product(self,product):
+        self.click((By.LINK_TEXT,product))
 
     def add_product_to_cart(self):
-        self.driver.find_element(*self.add_to_cart_link).click()
-        time.sleep(2)
+            
+        self.click_element(self.ADD_TO_CART)
+    def open_website(self):
+        self.driver.get("https://www.demoblaze.com")
 
-        alert = self.driver.switch_to.alert
-        alert.accept()
+    def select_product(self):
+
+        WebDriverWait(self.driver,10).until(EC.element_to_be_clickable(self.PRODUCT)).click()
+
+    def verify_product_details(self):
+
+        title = WebDriverWait(self.driver,10).until(EC.visibility_of_element_located(self.PRODUCT_TITLE)).text
+
+        price = WebDriverWait(self.driver,10).until(EC.visibility_of_element_located(self.PRODUCT_PRICE)).text
+
+        return (
+            title != ""
+            and price != ""
+        )

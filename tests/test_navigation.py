@@ -16,8 +16,7 @@ def verify_homepage_logo(browser):
 
 @then('the navigation bar should show links for "Home", "Contact", "About us", "Cart", "Log in" and "Sign up"')
 def verify_navbar_links(browser):
-    pass 
-
+    pass
 @when(parsers.parse('the user clicks on "{category}" in the categories menu'))
 def click_category(browser, category):
     nav_page = NavigationPage(browser)
