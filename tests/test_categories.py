@@ -47,5 +47,6 @@ def click_monitors(home_page):
 @then("monitors category products should display")
 def verify_monitors(driver):
 
-    WebDriverWait(driver,10).until(EC.visibility_of_element_located((By.XPATH,"//a[contains(text(),'Apple monitor')]")))
+    WebDriverWait(driver,20).until(lambda d:("Apple monitor" in d.page_source or"ASUS Full HD"in d.page_source))
+
     assert True

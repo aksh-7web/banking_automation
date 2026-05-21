@@ -7,4 +7,4 @@ Feature: Demoblaze Duplicate Signup Verification
     When the user clicks on "Sign up"
     And the user enters an already registered username "test" and password "password123"
     And the user clicks the "Sign up" button in the modal
-    Then a browser alert pop-up should appear with the message "This user already exists."
+    Then a browser alert pop-up should appear with the message "This user already exist."

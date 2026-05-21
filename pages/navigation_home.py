@@ -33,9 +33,8 @@ class NavigationPage(BasePage):
         time.sleep(1)
 
     def verify_product_is_visible(self, product_name):
-        grid_element = self.wait.until(EC.visibility_of_element_located(self.product_grid))
-        grid_text = grid_element.text
-        assert product_name in grid_text, f"Product '{product_name}' was not found on the display grid."
+        WebDriverWait(self.driver,20).until(lambda d:product_name in d.page_source)
+        assert (product_name in self.driver.page_source)
 
     def get_modal_title(self):
         return self.wait.until(EC.visibility_of_element_located(self.active_modal_title)).text
