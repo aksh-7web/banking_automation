@@ -3,7 +3,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import TimeoutException, UnexpectedAlertPresentException
 from pages.base_page import BasePage
-import time
 
 
 class LoginPage(BasePage):
@@ -47,7 +46,6 @@ class LoginPage(BasePage):
     def verify_login(self):
         try:
             # Wait for welcome message
-            time.sleep(1)  # Brief delay for page to load
             welcome_text = self.wait.until(
                 EC.visibility_of_element_located(self.USER_WELCOME)
             ).text

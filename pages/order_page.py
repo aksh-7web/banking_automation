@@ -11,61 +11,36 @@ class OrderPage(BasePage):
 
         locator = (By.LINK_TEXT, product_name)
 
-        WebDriverWait(self.driver, 10).until(
-            EC.element_to_be_clickable(locator)
-        )
-
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(locator))
         self.click_element(locator)
 
     def add_product_to_cart(self):
 
         locator = (By.LINK_TEXT, "Add to cart")
 
-        WebDriverWait(self.driver, 10).until(
-            EC.element_to_be_clickable(locator)
-        )
-
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(locator))
         self.click_element(locator)
 
-        WebDriverWait(self.driver, 10).until(
-            EC.alert_is_present()
-        )
-
+        WebDriverWait(self.driver, 10).until(EC.alert_is_present())
         self.driver.switch_to.alert.accept()
 
     def open_cart(self):
 
         locator = (By.ID, "cartur")
 
-        WebDriverWait(self.driver, 10).until(
-            EC.element_to_be_clickable(locator)
-        )
-
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(locator))
         self.click_element(locator)
 
     def click_place_order(self):
 
         locator = (By.XPATH, "//button[text()='Place Order']")
 
-        WebDriverWait(self.driver, 10).until(
-            EC.element_to_be_clickable(locator)
-        )
-
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(locator))
         self.click_element(locator)
 
-    def enter_order_details(
-        self,
-        name,
-        country,
-        city,
-        card,
-        month,
-        year
-    ):
+    def enter_order_details(self,name,country,city,card,month,year):
 
-        WebDriverWait(self.driver, 10).until(
-            EC.visibility_of_element_located((By.ID, "name"))
-        )
+        WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.ID, "name")))
 
         self.driver.find_element(By.ID, "name").send_keys(name)
         self.driver.find_element(By.ID, "country").send_keys(country)
@@ -78,10 +53,7 @@ class OrderPage(BasePage):
 
         locator = (By.XPATH, "//button[text()='Purchase']")
 
-        WebDriverWait(self.driver, 10).until(
-            EC.element_to_be_clickable(locator)
-        )
-
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(locator))
         self.click_element(locator)
 
     def is_order_successful(self):

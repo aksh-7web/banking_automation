@@ -19,24 +19,16 @@ class SignupPage(BasePage):
         self.open_url()
 
     def click_signup_link(self):
-        self.wait.until(
-            EC.element_to_be_clickable(self.signup_link)
-        ).click()
+        self.wait.until(EC.element_to_be_clickable(self.signup_link)).click()
 
     def enter_username(self, username):
-        self.wait.until(
-            EC.visibility_of_element_located(self.username_field)
-        ).send_keys(username)
+        self.wait.until(EC.visibility_of_element_located(self.username_field)).send_keys(username)
 
     def enter_password(self, password):
-        self.wait.until(
-            EC.visibility_of_element_located(self.password_field)
-        ).send_keys(password)
+        self.wait.until(EC.visibility_of_element_located(self.password_field)).send_keys(password)
 
     def click_signup_button(self):
-        self.wait.until(
-            EC.element_to_be_clickable(self.signup_btn)
-        ).click()
+        self.wait.until(EC.element_to_be_clickable(self.signup_btn)).click()
 
     def is_signup_successful(self):
         try:
