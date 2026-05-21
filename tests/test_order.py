@@ -1,6 +1,7 @@
 from pytest_bdd import scenarios, given, when, then, parsers
 from pages.order_page import OrderPage
 
+
 scenarios("../features/place_order.feature")
 scenarios("../features/order_confirmation.feature")
 
@@ -33,17 +34,27 @@ def open_cart(driver):
 
 
 @when("the user clicks place order button")
-def place_order(driver):
+def click_place_order(driver):
 
     page = OrderPage(driver)
     page.click_place_order()
 
 
-@when(parsers.cfparse(
-    'the user enters name "{name}", country "{country}", city "{city}", '
-    'card "{card}", month "{month}", year "{year}"'
-))
-def enter_order_details(driver, name, country, city, card, month, year):
+@when(
+    parsers.cfparse(
+        'the user enters name "{name}", country "{country}", city "{city}", '
+        'card "{card}", month "{month}", year "{year}"'
+    )
+)
+def enter_order_details(
+    driver,
+    name,
+    country,
+    city,
+    card,
+    month,
+    year
+):
 
     page = OrderPage(driver)
 
@@ -65,9 +76,10 @@ def click_purchase(driver):
 
 
 @then("order should be placed successfully")
-def verify_order(driver):
+def verify_order_success(driver):
 
     page = OrderPage(driver)
+
     assert page.is_order_successful()
 
 
@@ -75,4 +87,5 @@ def verify_order(driver):
 def verify_order_id(driver):
 
     page = OrderPage(driver)
+
     assert page.is_order_id_generated()
