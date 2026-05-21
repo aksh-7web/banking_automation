@@ -1,6 +1,19 @@
-Feature: Order Confirmation
+Feature: Order Confirmation Functionality
 
-  Scenario: Verify order confirmation message
-    Given user completed the purchase
-    Then confirmation popup should appear
-    And confirmation message should contain order id
+  Scenario: Verify order confirmation popup
+
+    Given the user is on the Demoblaze home page
+
+    When the user selects product "Samsung galaxy s6"
+
+    And the user adds product to cart
+
+    And the user opens cart
+
+    And the user clicks place order button
+
+    And the user enters name "Pratyush", country "India", city "Bhubaneswar", card "12345678", month "05", year "2026"
+
+    And the user clicks purchase button
+
+    Then order id should be generated
