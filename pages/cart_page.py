@@ -10,8 +10,7 @@ class CartPage:
 
     def open_cart(self):
         self.wait.until(
-            EC.element_to_be_clickable((By.ID, "cartur"))
-        ).click()
+            EC.element_to_be_clickable((By.ID, "cartur"))).click()
         self.wait.until(EC.visibility_of_element_located((By.ID, "tbodyid")))
     
     def verify_product_in_cart(self, product_name):
