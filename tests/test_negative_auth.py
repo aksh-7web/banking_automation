@@ -9,50 +9,47 @@ scenarios('../features/invalid_login.feature')
 scenarios('../features/signup_duplicate.feature')
 
 
-@given('the user is on the Demoblaze home page')
-def open_home_page(driver):
+@given("the user is on the Demoblaze website homepage",target_fixture="home")
+def open_home(driver):
     driver.get("https://www.demoblaze.com")
+    return driver
 
 
-@when('the user clicks on the login link')
-def click_login(driver):
-    login_page = LoginPage(driver)
-    login_page.click_login_link()
+@when(parsers.cfparse('the user clicks on "{button}"'))
+def click_button(driver, button):
+    if button == "Log in":
+        LoginPage(driver).click_login_link()
+    elif button == "Sign up":
+        SignupPage(driver).click_signup_link()
+    else:
+        raise ValueError(f'Unexpected button "{button}"')
 
 
-@when(parsers.parse('enters invalid username "{username}" and password "{password}"'))
-def enter_invalid_login_credentials(driver, username, password):
-    login_page = LoginPage(driver)
-    login_page.enter_username(username)
-    login_page.enter_password(password)
+@when(parsers.cfparse('the user enters username "{username}" and password "{password}"'))
+def enter_login_credentials(driver, username, password):
+    page = LoginPage(driver)
+    page.enter_username(username)
+    page.enter_password(password)
 
 
-@when('clicks login button')
-def click_login_button(driver):
-    login_page = LoginPage(driver)
-    login_page.click_login_button()
-
-
-@when('the user clicks on the signup link')
-def click_signup(driver):
-    signup_page = SignupPage(driver)
-    signup_page.click_signup_link()
-
-
-@when(parsers.parse('enters existing username "{username}" and password "{password}"'))
+@when(parsers.cfparse('the user enters an already registered username "{username}" and password "{password}"'))
 def enter_duplicate_signup_credentials(driver, username, password):
     signup_page = SignupPage(driver)
     signup_page.enter_username(username)
     signup_page.enter_password(password)
 
 
-@when('clicks signup button')
-def click_signup_button(driver):
-    signup_page = SignupPage(driver)
-    signup_page.click_signup_button()
+@when(parsers.cfparse('the user clicks the "{button}" button in the modal'))
+def click_modal_button(driver, button):
+    if button == "Log in":
+        LoginPage(driver).click_login_button()
+    elif button == "Sign up":
+        SignupPage(driver).click_signup_button()
+    else:
+        raise ValueError(f'Unexpected modal button "{button}"')
 
 
-@then(parsers.parse('an alert should be displayed with message "{message}"'))
+@then(parsers.cfparse('a browser alert pop-up should appear with the message "{message}"'))
 def verify_alert_message(driver, message):
 
     WebDriverWait(driver, 10).until(EC.alert_is_present())
