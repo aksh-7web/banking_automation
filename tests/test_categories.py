@@ -43,10 +43,12 @@ def click_monitors(home_page):
 
     home_page.select_category("Monitors")
 
-
+#  This test will fail Because i have asserted False (False failure for report)
 @then("monitors category products should display")
 def verify_monitors(driver):
 
     WebDriverWait(driver,20).until(lambda d:("Apple monitor" in d.page_source or"ASUS Full HD"in d.page_source))
 
-    assert True
+#  Take Screenshot
+    driver.save_screenshot("screenshots/false_failure.png")
+    assert False
